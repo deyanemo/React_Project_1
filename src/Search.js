@@ -10,6 +10,7 @@ class Search extends Component {
         books: [],
         error: ''
     }
+
      render() {
          const search = (event) => {
              //Get the query 
@@ -17,13 +18,15 @@ class Search extends Component {
              backend.search(query).then(res => {
                 if (Array.isArray(res)) {
                     // Check is its array then add to state
-                    this.setState((current) =>(
-                        {books:res}
-                    ))
+                    if (query.length > 0) {
+                        this.setState((current) =>(
+                            {books:res}
+                        ))
+                    }
                 }else {
                     // ERROR 
                     this.setState((res) =>(
-                        {error:res.error}
+                        {books:[]}
                     ))
                 }
              })
@@ -40,7 +43,7 @@ class Search extends Component {
             <div className="search-books-results">
               <ol className="books-grid">
               {this.state.books.map(book =>(
-                  <Book key={book.id} book={book}  updateShelf={this.props.updateShelf} />
+                  <Book key={book.id} book={book}  updateShelf={this.props.updateShelf}  allbooks={this.props.allbooks} />
               ))}
               </ol>
             </div>

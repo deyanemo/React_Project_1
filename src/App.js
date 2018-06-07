@@ -1,7 +1,6 @@
 import React from 'react'
 import './App.css'
 import * as backend from './BooksAPI'
-import Book from './Book'
 import {Route, Link } from 'react-router-dom'
 import ListBooks from './ListBooks';
 import Search from './Search';
